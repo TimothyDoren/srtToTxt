@@ -16,7 +16,11 @@ def process_srt(file_path):
     transcript = re.sub(r'\s+', ' ', transcript).strip()
 
     # Add a line break whenever there is an opening parenthesis
-    transcript = re.sub(r'(\()', r'\n\1', transcript)
+    transcript = transcript.replace('（', '\n（')
+
+    # Remove the first newline character if it exists
+    if transcript.startswith('\n'):
+        transcript = transcript[1:]
 
     return transcript
 
