@@ -15,6 +15,9 @@ def process_srt(file_path):
     # Remove extra spaces
     transcript = re.sub(r'\s+', ' ', transcript).strip()
 
+    # Add a line break whenever there is an opening parenthesis
+    transcript = re.sub(r'(\()', r'\n\1', transcript)
+
     return transcript
 
 def write_transcript(transcript, output_file_path):
